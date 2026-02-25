@@ -1,0 +1,28 @@
+name: CI - Ejecutar Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    # Ejecuta los tests en Ubuntu y Windows
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      # Descarga el código del repositorio
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      # Configura Java 21
+      - name: Configurar Java 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      # Compila y ejecuta todos los tests
+      - name: Ejecutar tests con Maven
+        run: ./mvnw clean test
