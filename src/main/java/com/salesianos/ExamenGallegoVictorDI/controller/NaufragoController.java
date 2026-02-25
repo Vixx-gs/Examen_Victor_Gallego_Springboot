@@ -1,5 +1,6 @@
 package com.salesianos.ExamenGallegoVictorDI.controller;
 
+import com.salesianos.ExamenGallegoVictorDI.model.Habilidad;
 import com.salesianos.ExamenGallegoVictorDI.model.Naufrago;
 import com.salesianos.ExamenGallegoVictorDI.service.HabilidadService;
 import com.salesianos.ExamenGallegoVictorDI.service.NaufragoService;
@@ -30,7 +31,13 @@ public class NaufragoController {
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Naufrago naufrago) {
+    public String save(@ModelAttribute Naufrago naufrago,
+                       @RequestParam(value = "habilidadId", required = false) Long habilidadId) {
+        if (habilidadId != null) {
+            habilidadService.findById(habilidadId).ifPresent(naufrago::setHabilidad);
+        } else {
+            naufrago.setHabilidad(null);
+        }
         naufragoService.save(naufrago);
         return "redirect:/naufragos";
     }

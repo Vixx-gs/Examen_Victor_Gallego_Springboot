@@ -6,8 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/kpi")
@@ -19,12 +20,25 @@ public class KpiController {
     @GetMapping
     public String kpi(Model model) {
         List<Object[]> porNacionalidad = naufragoService.countByNacionalidad();
-        model.addAttribute("nacionalidadLabels", porNacionalidad.stream().map(o -> o[0].toString()).collect(Collectors.toList()));
-        model.addAttribute("nacionalidadData", porNacionalidad.stream().map(o -> o[1].toString()).collect(Collectors.toList()));
+        List<String> nacionalidadLabels = new ArrayList<>();
+        List<Long> nacionalidadData = new ArrayList<>();
+        for (Object[] row : porNacionalidad) {
+            nacionalidadLabels.add(row[0] != null ? row[0].toString() : "Desconocida");
+            nacionalidadData.add((Long) row[1]);
+        }
 
         List<Object[]> porSexo = naufragoService.countBySexo();
-        model.addAttribute("sexoLabels", porSexo.stream().map(o -> o[0].toString()).collect(Collectors.toList()));
-        model.addAttribute("sexoData", porSexo.stream().map(o -> o[1].toString()).collect(Collectors.toList()));
+        List<String> sexoLabels = new ArrayList<>();
+        List<Long> sexoData = new ArrayList<>();
+        for (Object[] row : porSexo) {
+            sexoLabels.add(row[0] != null ? row[0].toString() : "Desconocido");
+            sexoData.add((Long) row[1]);
+        }
+
+        model.addAttribute("nacionalidadLabels", nacionalidadLabels);
+        model.addAttribute("nacionalidadData", nacionalidadData);
+        model.addAttribute("sexoLabels", sexoLabels);
+        model.addAttribute("sexoData", sexoData);
 
         return "kpi/dashboard";
     }

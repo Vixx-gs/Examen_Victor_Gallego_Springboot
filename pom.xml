@@ -12,7 +12,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>es.salesianos</groupId>
+    <groupId>com.salesianos</groupId>
     <artifactId>ExamenGallegoVictorDI</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>

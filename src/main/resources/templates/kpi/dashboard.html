@@ -21,12 +21,6 @@
 </nav>
 <div class="container mt-4">
     <h2>Panel KPI</h2>
-
-    <div id="nacionalidadLabels" th:attr="data-labels=${#strings.listJoin(nacionalidadLabels, ',')}"></div>
-    <div id="nacionalidadData" th:attr="data-values=${#strings.listJoin(nacionalidadData, ',')}"></div>
-    <div id="sexoLabels" th:attr="data-labels=${#strings.listJoin(sexoLabels, ',')}"></div>
-    <div id="sexoData" th:attr="data-values=${#strings.listJoin(sexoData, ',')}"></div>
-
     <div class="row">
         <div class="col-md-6 mb-4">
             <h5>Náufragos por Nacionalidad</h5>
@@ -38,12 +32,12 @@
         </div>
     </div>
 </div>
-
-<script>
-    const nacionalidadLabels = document.getElementById('nacionalidadLabels').dataset.labels.split(',').filter(x => x);
-    const nacionalidadData = document.getElementById('nacionalidadData').dataset.values.split(',').filter(x => x);
-    const sexoLabels = document.getElementById('sexoLabels').dataset.labels.split(',').filter(x => x);
-    const sexoData = document.getElementById('sexoData').dataset.values.split(',').filter(x => x);
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var nacionalidadLabels = /*[[${nacionalidadLabels}]]*/ [];
+    var nacionalidadData = /*[[${nacionalidadData}]]*/ [];
+    var sexoLabels = /*[[${sexoLabels}]]*/ [];
+    var sexoData = /*[[${sexoData}]]*/ [];
 
     new Chart(document.getElementById('chartNacionalidad'), {
         type: 'bar',
@@ -54,6 +48,10 @@
                 data: nacionalidadData,
                 backgroundColor: 'rgba(54, 162, 235, 0.6)'
             }]
+        },
+        options: {
+            responsive: true,
+            scales: { y: { beginAtZero: true } }
         }
     });
 
@@ -65,8 +63,10 @@
                 data: sexoData,
                 backgroundColor: ['rgba(255,99,132,0.6)', 'rgba(54,162,235,0.6)', 'rgba(255,205,86,0.6)']
             }]
-        }
+        },
+        options: { responsive: true }
     });
+    /*]]>*/
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
