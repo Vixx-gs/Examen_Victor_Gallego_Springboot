@@ -3,12 +3,15 @@ package com.salesianos.ExamenGallegoVictorDI;
 import com.salesianos.ExamenGallegoVictorDI.model.Habilidad;
 import com.salesianos.ExamenGallegoVictorDI.repository.HabilidadRepository;
 import com.salesianos.ExamenGallegoVictorDI.repository.NaufragoRepository;
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Template;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.client.RestTemplate;
+
 import static org.assertj.core.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -19,7 +22,7 @@ public class NaufragoControllerTest {
     private int port;
 
     @Autowired
-    private TestRestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     @Autowired
     private HabilidadRepository habilidadRepository;
