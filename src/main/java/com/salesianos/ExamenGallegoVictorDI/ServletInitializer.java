@@ -1,4 +1,4 @@
-package com.salesianos.Examen_Victor_Gallego_Springboot;
+package com.salesianos.ExamenGallegoVictorDI;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

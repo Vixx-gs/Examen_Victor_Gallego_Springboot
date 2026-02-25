@@ -1,4 +1,4 @@
-package com.salesianos.Examen_Victor_Gallego_Springboot;
+package com.salesianos.ExamenGallegoVictorDI;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

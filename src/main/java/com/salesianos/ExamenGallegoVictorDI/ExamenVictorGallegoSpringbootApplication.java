@@ -1,4 +1,4 @@
-package com.salesianos.Examen_Victor_Gallego_Springboot;
+package com.salesianos.ExamenGallegoVictorDI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +9,5 @@ public class ExamenVictorGallegoSpringbootApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ExamenVictorGallegoSpringbootApplication.class, args);
 	}
-
+	
 }
- 
