@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Habilidades</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Naufragados</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/naufragos}">Náufragos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/habilidades}">Habilidades</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/kpi}">KPI</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4">
+    <h2>Habilidades</h2>
+    <a th:href="@{/habilidades/new}" class="btn btn-primary mb-3">Nueva Habilidad</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Dificultad</th>
+                <th>Experiencia</th>
+                <th>Categoria</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="h : ${habilidades}">
+                <td th:text="${h.id}"></td>
+                <td th:text="${h.nombre}"></td>
+                <td th:text="${h.descripcion}"></td>
+                <td th:text="${h.dificultad}"></td>
+                <td th:text="${h.experiencia}"></td>
+                <td th:text="${h.categoria}"></td>
+                <td>
+                    <a th:href="@{/habilidades/edit/{id}(id=${h.id})}" class="btn btn-sm btn-warning">Editar</a>
+                    <form th:action="@{/habilidades/delete/{id}(id=${h.id})}" method="post" style="display:inline">
+                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
