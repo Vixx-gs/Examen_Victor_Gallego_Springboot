@@ -1,7 +1,8 @@
-package es.salesianos.ExamenGallegoVictorDI.repository;
+package com.salesianos.ExamenGallegoVictorDI.repository;
 
-import es.salesianos.ExamenGallegoVictorDI.model.Habilidad;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.salesianos.ExamenGallegoVictorDI.model.Habilidad;
 
 public interface HabilidadRepository extends JpaRepository<Habilidad, Long> {
 }

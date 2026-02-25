@@ -1,4 +1,4 @@
-package es.salesianos.ExamenGallegoVictorDI.model;
+package com.salesianos.ExamenGallegoVictorDI.model;
 
 import jakarta.persistence.*;
 import lombok.*;
