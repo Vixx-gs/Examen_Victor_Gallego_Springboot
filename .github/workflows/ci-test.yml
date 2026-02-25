@@ -1,3 +1,5 @@
+# Workflow de integración continua
+# Se ejecuta de forma manual desde la pestaña Actions de GitHub
 name: CI - Ejecutar Tests
 
 on:
@@ -22,6 +24,11 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+
+      # Da permisos de ejecución al wrapper en Linux
+      - name: Dar permisos a mvnw (Linux)
+        if: runner.os == 'Linux'
+        run: chmod +x ./mvnw
 
       # Compila y ejecuta todos los tests
       - name: Ejecutar tests con Maven
